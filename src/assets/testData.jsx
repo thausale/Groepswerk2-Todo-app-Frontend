@@ -1,4 +1,4 @@
-const data = {
+export const testData = {
   type: {
     id: 1,
     typeName: "Shopping",
