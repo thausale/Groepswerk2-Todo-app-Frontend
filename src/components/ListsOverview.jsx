@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import config from "../config";
-import "../scss/listsOverview.scss";
+import "bulma/css/bulma.css";
 
 const ListsOverview = (props) => {
   // const [lists, setListsData] = useState([]);
