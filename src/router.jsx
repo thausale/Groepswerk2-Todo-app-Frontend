@@ -6,6 +6,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <ListsOverview />,
   },
+  {
+    path: "/list/:id",
+    element: <List />,
+  },
 ]);
 
 export default router;
