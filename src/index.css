@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -70,4 +70,15 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+
+.fa-solid.fa-bars-staggered {
+  color: rgb(162, 162, 162);
+}
+.sticky {
+  position: sticky;
+  bottom: 0;
+}
+p.menu-label {
+  padding-top: 1.5rem;
 }
