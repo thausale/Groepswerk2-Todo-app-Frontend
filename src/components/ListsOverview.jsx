@@ -123,27 +123,17 @@ const ListsOverview = (props) => {
                 {/* need an endpoint with categories */}
                 {listCats &&
                   listCats.map((cat) => (
-                    <li key={cat.id}>
-                      <a>
-                        <span className="icon-text">
-                          <span className="icon">
-                            <i className="fa-solid fa-bars-staggered"></i>
-                          </span>
-                          <span>{cat.name}</span>
-                        </span>
-                      </a>
-                      <ul>
-                        {listsWCat
-                          .filter((list) => list.category_name == cat.name)
-                          .map((list) => (
-                            <ListName
-                              key={list.id}
-                              id={list.id}
-                              name={list.name}
-                            />
-                          ))}
-                      </ul>
-                    </li>
+                    <Category key={cat.id} id={cat.id} name={cat.name}>
+                      {listsWCat
+                        .filter((list) => list.category_name == cat.name)
+                        .map((list) => (
+                          <ListName
+                            key={list.id}
+                            id={list.id}
+                            name={list.name}
+                          />
+                        ))}
+                    </Category>
                   ))}
               </ul>
             </>
