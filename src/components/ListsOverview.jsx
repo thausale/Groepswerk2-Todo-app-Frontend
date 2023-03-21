@@ -18,8 +18,8 @@ const ListsOverview = (props) => {
   const getLists = async () => {
     const {
       data: { data },
-    } = await axios(baseUrl + "?resource=lists");
-    // } = await axios(baseUrl + "/lists");
+      // } = await axios(baseUrl + "?resource=lists");
+    } = await axios(baseUrl + "/lists");
     return data;
   };
 
