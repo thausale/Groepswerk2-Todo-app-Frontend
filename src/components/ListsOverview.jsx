@@ -95,7 +95,7 @@ const ListsOverview = (props) => {
                         <span className="icon has-text-warning">
                           <i className="fa-regular fa-star"></i>
                         </span>
-                        <span>list.name</span>
+                        <span>{list.name}</span>
                       </span>
                     </a>
                   </li>
@@ -108,19 +108,18 @@ const ListsOverview = (props) => {
             <>
               <p className="menu-label">Lists</p>
               <ul className="menu-list">
-                {lists &&
-                  lists.map((list) => (
-                    <li key={list.id}>
-                      <a>
-                        <span className="icon-text">
-                          <span className="icon">
-                            <i className="fa-solid fa-list-ul"></i>
-                          </span>
-                          <span>{list.name}</span>
+                {lists.map((list) => (
+                  <li key={list.id}>
+                    <a>
+                      <span className="icon-text">
+                        <span className="icon">
+                          <i className="fa-solid fa-list-ul"></i>
                         </span>
-                      </a>
-                    </li>
-                  ))}
+                        <span>{list.name}</span>
+                      </span>
+                    </a>
+                  </li>
+                ))}
                 {/* need an endpoint with categories */}
                 {listCats &&
                   listCats.map((cat) => (
