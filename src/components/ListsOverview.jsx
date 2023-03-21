@@ -22,6 +22,13 @@ const ListsOverview = (props) => {
     } = await axios(baseUrl + "/lists");
     return data;
   };
+  const getCats = async () => {
+    const {
+      data: { data },
+      // } = await axios(baseUrl + "?resource=lists");
+    } = await axios(baseUrl + "/categories");
+    return data;
+  };
 
   useEffect(() => {
     const fetchLists = async () => {
