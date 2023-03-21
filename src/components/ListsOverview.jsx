@@ -106,16 +106,7 @@ const ListsOverview = (props) => {
               <p className="menu-label">Important</p>
               <ul className="menu-list">
                 {impLists.map((list) => (
-                  <li key={list.id}>
-                    <a>
-                      <span className="icon-text">
-                        <span className="icon has-text-warning">
-                          <i className="fa-regular fa-star"></i>
-                        </span>
-                        <span>{list.name}</span>
-                      </span>
-                    </a>
-                  </li>
+                  <ListName key={list.id} id={list.id} name={list.name} />
                 ))}
               </ul>
             </>
@@ -126,16 +117,7 @@ const ListsOverview = (props) => {
               <p className="menu-label">Lists</p>
               <ul className="menu-list">
                 {lists.map((list) => (
-                  <li key={list.id}>
-                    <a>
-                      <span className="icon-text">
-                        <span className="icon">
-                          <i className="fa-solid fa-list-ul"></i>
-                        </span>
-                        <span>{list.name}</span>
-                      </span>
-                    </a>
-                  </li>
+                  <ListName key={list.id} id={list.id} name={list.name} />
                 ))}
                 {/* need an endpoint with categories */}
                 {listCats &&
@@ -153,19 +135,11 @@ const ListsOverview = (props) => {
                         {listsWCat
                           .filter((list) => list.category_name == cat.name)
                           .map((list) => (
-                            <>
-                              <ListName id={list.id} name={list.name} />
-                              {/* <li key={list.id} listId={list.id}>
-                                <a>
-                                  <span className="icon-text">
-                                    <span className="icon">
-                                      <i className="fa-solid fa-list-ul"></i>
-                                    </span>
-                                    <span>{list.name}</span>
-                                  </span>
-                                </a>
-                              </li> */}
-                            </>
+                            <ListName
+                              key={list.id}
+                              id={list.id}
+                              name={list.name}
+                            />
                           ))}
                       </ul>
                     </li>
@@ -180,16 +154,7 @@ const ListsOverview = (props) => {
               <ul className="menu-list">
                 {shopping &&
                   shopping.map((list) => (
-                    <li key={list.id}>
-                      <a>
-                        <span className="icon-text">
-                          <span className="icon">
-                            <i className="fa-solid fa-list-ul"></i>
-                          </span>
-                          <span>{list.name}</span>
-                        </span>
-                      </a>
-                    </li>
+                    <ListName key={list.id} id={list.id} name={list.name} />
                   ))}
                 {/* need an endpoint with categories */}
                 {shopCats &&
@@ -207,16 +172,11 @@ const ListsOverview = (props) => {
                         {shoppingWCat
                           .filter((list) => list.category_name == cat.name)
                           .map((list) => (
-                            <li key={list.id}>
-                              <a>
-                                <span className="icon-text">
-                                  <span className="icon">
-                                    <i className="fa-solid fa-list-ul"></i>
-                                  </span>
-                                  <span>{list.name}</span>
-                                </span>
-                              </a>
-                            </li>
+                            <ListName
+                              key={list.id}
+                              id={list.id}
+                              name={list.name}
+                            />
                           ))}
                       </ul>
                     </li>
