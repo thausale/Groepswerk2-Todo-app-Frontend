@@ -16,6 +16,7 @@ const ListsOverview = (props) => {
   const [shoppingWCat, setShoppingWCat] = useState([]);
   const [listCats, setListCats] = useState([]);
   const [shopCats, setShopCats] = useState([]);
+  const [inputError, setInputError] = useState();
 
   const [postValue, setPostValue] = useState("");
   const baseUrl = config.apiBaseUrl;
@@ -33,6 +34,12 @@ const ListsOverview = (props) => {
     return data;
   };
   const addNewList = async () => {
+    setInputError("");
+    if (postValue.length < 3) {
+      setInputError("listName should be over 3 characters long");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("name", postValue);
     await axios.post(baseUrl + "/list", formData);
@@ -135,6 +142,8 @@ const ListsOverview = (props) => {
           )}
         </aside>
       </div>
+
+      {inputError && <p>{inputError}</p>}
       <Add
         postValue={postValue}
         setPostValue={setPostValue}
