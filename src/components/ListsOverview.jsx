@@ -125,23 +125,6 @@ const ListsOverview = (props) => {
               </ul>
             </>
           )}
-
-          {shopping && (
-            <>
-              <p className="menu-label">Shopping</p>
-              <ul className="menu-list">
-                {shopping &&
-                  shopping.map((list) => (
-                    <ListName key={list.id} id={list.id} name={list.name} />
-                  ))}
-
-                <Category
-                  cats={shoppingWCat}
-                  listsWCat={shoppingWCat}
-                ></Category>
-              </ul>
-            </>
-          )}
         </aside>
       </div>
       <Add placeholder="Add list"></Add>
