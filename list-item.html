@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Todo HTML</title>
+    <script
+      src="https://kit.fontawesome.com/c3742c0b9f.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <style>
+      .fa-solid.fa-bars-staggered {
+        color: rgb(162, 162, 162);
+      }
+      .sticky {
+        position: sticky;
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero is-light is-fullheight">
+      <div>
+        <h1 class="title my-5 mx-4">List 1</h1>
+        <aside class="menu is-medium mx-4">
+          <p class="menu-label">Settings</p>
+          <ul class="menu-list">
+            <li>
+              <a
+                ><span class="icon-text">
+                  <span class="icon has-text-warning">
+                    <i class="fa-regular fa-star"></i>
+                  </span>
+                  <span>Important</span>
+                </span></a
+              >
+            </li>
+            <li>
+              <a
+                ><span class="icon-text">
+                  <span class="icon has-text-warning">
+                    <i class="fa-regular fa-star"></i>
+                  </span>
+                  <span>Edit list name</span>
+                </span></a
+              >
+            </li>
+            <li>
+              <a
+                ><span class="icon-text">
+                  <span class="icon has-text-warning">
+                    <i class="fa-regular fa-star"></i>
+                  </span>
+                  <span>Delete list</span>
+                </span></a
+              >
+            </li>
+          </ul>
+          <p class="menu-label">List-items</p>
+          <ul class="menu-list">
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fa-regular fa-circle-check"></i>
+                </span>
+                <span>Full Stack Dev</span>
+              </span>
+            </li>
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fa-regular fa-circle"></i>
+                </span>
+                <span>Full Stack Dev</span>
+              </span>
+            </li>
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fa-regular fa-circle"></i>
+                </span>
+                <span>Full Stack Dev</span>
+              </span>
+            </li>
+            <li>
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fa-regular fa-circle-check"></i>
+                </span>
+                <span>Full Stack Dev</span>
+              </span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <div
+        class="box p-0 is-flex is-flex-direction-row is-justify-content-space-between is-align-content-center div has-icons-right sticky"
+      >
+        <p class="control has-icons-left m-3">
+          <input class="input is-medium" type="text" placeholder="Add list" />
+          <span class="icon is-small is-left">
+            <i class="fa-solid fa-plus"></i>
+          </span>
+        </p>
+        <button class="button m-3 is-medium">
+          <span class="icon is-right">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <template>
+      <!-- IMPORTANT - LISTS - SHOPPING -->
+      <p class="menu-label">Shopping</p>
+
+      <!-- All list component -->
+      <section class="hero is-light is-fullheight">
+        <div>
+          <h1 class="title my-5 mx-4">All my lists</h1>
+          <aside class="menu is-medium mx-4"></aside>
+        </div>
+      </section>
+
+      <!-- 1 LIST -->
+      <li>
+        <a
+          ><span class="icon-text">
+            <span class="icon">
+              <i class="fa-solid fa-list-ul"></i>
+            </span>
+            <span>Delhaize</span>
+          </span></a
+        >
+      </li>
+
+      <!-- 1 CATEGORY  -->
+      <li>
+        <a
+          ><span class="icon-text">
+            <span class="icon">
+              <i class="fa-solid fa-bars-staggered"></i>
+            </span>
+            <span>Full Stack Dev</span>
+          </span></a
+        >
+        <ul></ul>
+      </li>
+
+      <!-- 1 LIST-ITEM -->
+      <!-- list-item checked -->
+      <li>
+        <span class="icon-text">
+          <span class="icon">
+            <i class="fa-regular fa-circle-check"></i>
+          </span>
+          <span>Full Stack Dev</span>
+        </span>
+      </li>
+
+      <!-- list-item unchecked -->
+      <li>
+        <span class="icon-text">
+          <span class="icon">
+            <i class="fa-regular fa-circle"></i>
+          </span>
+          <span>Full Stack Dev</span>
+        </span>
+      </li>
+
+      <!-- IMPORTANT component -->
+
+      <!-- Input component -->
+      <div
+        class="box p-0 is-flex is-flex-direction-row is-justify-content-space-between is-align-content-center div has-icons-right sticky"
+      >
+        <p class="control has-icons-left m-3">
+          <input class="input is-medium" type="text" placeholder="Add list" />
+          <span class="icon is-small is-left">
+            <i class="fa-solid fa-plus"></i>
+          </span>
+        </p>
+        <button class="button m-3 is-medium">
+          <span class="icon is-right">
+            <i class="fa-solid fa-bars-staggered"></i>
+          </span>
+        </button>
+      </div>
+    </template>
+  </body>
+</html>
