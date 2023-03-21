@@ -120,21 +120,8 @@ const ListsOverview = (props) => {
                 {lists.map((list) => (
                   <ListName key={list.id} id={list.id} name={list.name} />
                 ))}
-                {/* need an endpoint with categories */}
-                {listCats &&
-                  listCats.map((cat) => (
-                    <Category key={cat.id} id={cat.id} name={cat.name}>
-                      {listsWCat
-                        .filter((list) => list.category_name == cat.name)
-                        .map((list) => (
-                          <ListName
-                            key={list.id}
-                            id={list.id}
-                            name={list.name}
-                          />
-                        ))}
-                    </Category>
-                  ))}
+
+                <Category cats={listCats} listsWCat={listsWCat}></Category>
               </ul>
             </>
           )}
@@ -147,21 +134,11 @@ const ListsOverview = (props) => {
                   shopping.map((list) => (
                     <ListName key={list.id} id={list.id} name={list.name} />
                   ))}
-                {/* need an endpoint with categories */}
-                {shopCats &&
-                  shopCats.map((cat) => (
-                    <Category key={cat.id} id={cat.id} name={cat.name}>
-                      {shoppingWCat
-                        .filter((list) => list.category_name == cat.name)
-                        .map((list) => (
-                          <ListName
-                            key={list.id}
-                            id={list.id}
-                            name={list.name}
-                          />
-                        ))}
-                    </Category>
-                  ))}
+
+                <Category
+                  cats={shoppingWCat}
+                  listsWCat={shoppingWCat}
+                ></Category>
               </ul>
             </>
           )}
@@ -170,35 +147,6 @@ const ListsOverview = (props) => {
       <Add placeholder="Add list"></Add>
     </section>
   );
-
-  // return (
-  //   <div className="container">
-  //     <div className="columns is-multiline is-variable is-1">
-  //       {categories.map((categoryName) => (
-  //         <div key={categoryName} className="column is-full">
-  //           <div className="box">
-  //             {categoryName === "null" ? (
-  //               <h4 className="title is-4">General</h4>
-  //             ) : (
-  //               ""
-  //             )}
-
-  //             {categoryName !== "null" && (
-  //               <h4 className="title is-4">{categoryName}</h4>
-  //             )}
-  //             <ul>
-  //               {groupedLists[categoryName].map((list) => (
-  //                 <li key={list.id}>
-  //                   <span className="tag is-light">{list.name}</span>
-  //                 </li>
-  //               ))}
-  //             </ul>
-  //           </div>
-  //         </div>
-  //       ))}
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default ListsOverview;
