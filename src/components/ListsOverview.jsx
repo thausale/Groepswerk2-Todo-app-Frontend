@@ -20,14 +20,12 @@ const ListsOverview = (props) => {
   const getLists = async () => {
     const {
       data: { data },
-      // } = await axios(baseUrl + "?resource=lists");
     } = await axios(baseUrl + "/lists");
     return data;
   };
   const getCats = async () => {
     const {
       data: { data },
-      // } = await axios(baseUrl + "?resource=lists");
     } = await axios(baseUrl + "/categories");
     return data;
   };
@@ -43,9 +41,11 @@ const ListsOverview = (props) => {
       const importantLists = allLists.filter((list) => list.important === "1");
       setImpLists(importantLists);
 
-      const listsType1 = allLists.filter((list) => list.type_name === "lists");
+      const listsType1 = allLists.filter(
+        (list) => list.type_name === "lists" && list.important === "0"
+      );
       const shoppingType2 = allLists.filter(
-        (list) => list.type_name === "shopping"
+        (list) => list.type_name === "shopping" && list.important === "0"
       );
 
       const listsWoCat = listsType1.filter(
