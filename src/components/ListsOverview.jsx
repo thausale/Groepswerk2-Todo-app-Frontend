@@ -16,6 +16,8 @@ const ListsOverview = (props) => {
   const [shoppingWCat, setShoppingWCat] = useState([]);
   const [listCats, setListCats] = useState([]);
   const [shopCats, setShopCats] = useState([]);
+
+  const [postValue, setPostValue] = useState("");
   const baseUrl = config.apiBaseUrl;
 
   const getLists = async () => {
@@ -30,8 +32,14 @@ const ListsOverview = (props) => {
     } = await axios(baseUrl + "/categories");
     return data;
   };
+  const addNewList = async () => {
+    const formData = new FormData();
+    formData.append("name", postValue);
+    await axios.post(baseUrl + "/list", formData);
+  };
 
   useEffect(() => {
+    addNewList();
     const fetchLists = async () => {
       const allLists = await getLists();
       setAllLists(allLists);
@@ -95,7 +103,7 @@ const ListsOverview = (props) => {
       // console.log(shopCats);
     };
     fetchLists();
-  }, []);
+  }, [postValue]);
 
   return (
     <section className="hero is-light is-fullheight">
@@ -127,7 +135,12 @@ const ListsOverview = (props) => {
           )}
         </aside>
       </div>
-      <Add placeholder="Add list"></Add>
+      <Add
+        postValue={postValue}
+        setPostValue={setPostValue}
+        placeholder="Add list"
+        baseUrl={baseUrl}
+      ></Add>
     </section>
   );
 };

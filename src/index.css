@@ -82,3 +82,8 @@ button:focus-visible {
 p.menu-label {
   padding-top: 1.5rem;
 }
+
+form {
+  display: flex;
+  flex-direction: row;
+}
