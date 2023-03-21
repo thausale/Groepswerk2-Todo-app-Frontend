@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Add from "./Add";
 import config from "../config";
+import ListName from "./ListName";
 import "bulma/css/bulma.css";
 
 const ListsOverview = (props) => {
   const [allLists, setAllLists] = useState([]);
+  const [allCats, setAllCats] = useState([]);
   const [impLists, setImpLists] = useState([]);
   const [lists, setLists] = useState([]);
   const [shopping, setShopping] = useState([]);
@@ -34,6 +36,8 @@ const ListsOverview = (props) => {
     const fetchLists = async () => {
       const allLists = await getLists();
       setAllLists(allLists);
+      const allCats = await getCats();
+      setAllCats(allLists);
 
       // get all lists with imp = 1;
       const importantLists = allLists.filter((list) => list.important === "1");
@@ -78,10 +82,16 @@ const ListsOverview = (props) => {
         {}
       );
 
-      const listCats = Object.keys(listCategoriesOccurence);
+      const listCats = allCats.filter((cat) =>
+        Object.keys(listCategoriesOccurence).includes(cat.name)
+      );
       setListCats(listCats);
-      const shopCats = Object.keys(shoppingCategoriesOccurence);
+      // console.log(listCats);
+      const shopCats = allCats.filter((cat) =>
+        Object.keys(shoppingCategoriesOccurence).includes(cat.name)
+      );
       setShopCats(shopCats);
+      // console.log(shopCats);
     };
     fetchLists();
   }, []);
@@ -130,29 +140,32 @@ const ListsOverview = (props) => {
                 {/* need an endpoint with categories */}
                 {listCats &&
                   listCats.map((cat) => (
-                    <li key={cat}>
+                    <li key={cat.id}>
                       <a>
                         <span className="icon-text">
                           <span className="icon">
                             <i className="fa-solid fa-bars-staggered"></i>
                           </span>
-                          <span>{cat}</span>
+                          <span>{cat.name}</span>
                         </span>
                       </a>
                       <ul>
                         {listsWCat
-                          .filter((list) => list.category_name == cat)
+                          .filter((list) => list.category_name == cat.name)
                           .map((list) => (
-                            <li key={list.id}>
-                              <a>
-                                <span className="icon-text">
-                                  <span className="icon">
-                                    <i className="fa-solid fa-list-ul"></i>
+                            <>
+                              <ListName id={list.id} name={list.name} />
+                              {/* <li key={list.id} listId={list.id}>
+                                <a>
+                                  <span className="icon-text">
+                                    <span className="icon">
+                                      <i className="fa-solid fa-list-ul"></i>
+                                    </span>
+                                    <span>{list.name}</span>
                                   </span>
-                                  <span>{list.name}</span>
-                                </span>
-                              </a>
-                            </li>
+                                </a>
+                              </li> */}
+                            </>
                           ))}
                       </ul>
                     </li>
@@ -181,18 +194,18 @@ const ListsOverview = (props) => {
                 {/* need an endpoint with categories */}
                 {shopCats &&
                   shopCats.map((cat) => (
-                    <li key={cat}>
+                    <li key={cat.id}>
                       <a>
                         <span className="icon-text">
                           <span className="icon">
                             <i className="fa-solid fa-bars-staggered"></i>
                           </span>
-                          <span>{cat}</span>
+                          <span>{cat.name}</span>
                         </span>
                       </a>
                       <ul>
                         {shoppingWCat
-                          .filter((list) => list.category_name == cat)
+                          .filter((list) => list.category_name == cat.name)
                           .map((list) => (
                             <li key={list.id}>
                               <a>
