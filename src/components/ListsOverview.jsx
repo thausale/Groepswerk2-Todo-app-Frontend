@@ -3,6 +3,7 @@ import axios from "axios";
 import Add from "./Add";
 import config from "../config";
 import ListName from "./ListName";
+import Category from "./Category";
 import "bulma/css/bulma.css";
 
 const ListsOverview = (props) => {
@@ -159,27 +160,17 @@ const ListsOverview = (props) => {
                 {/* need an endpoint with categories */}
                 {shopCats &&
                   shopCats.map((cat) => (
-                    <li key={cat.id}>
-                      <a>
-                        <span className="icon-text">
-                          <span className="icon">
-                            <i className="fa-solid fa-bars-staggered"></i>
-                          </span>
-                          <span>{cat.name}</span>
-                        </span>
-                      </a>
-                      <ul>
-                        {shoppingWCat
-                          .filter((list) => list.category_name == cat.name)
-                          .map((list) => (
-                            <ListName
-                              key={list.id}
-                              id={list.id}
-                              name={list.name}
-                            />
-                          ))}
-                      </ul>
-                    </li>
+                    <Category key={cat.id} id={cat.id} name={cat.name}>
+                      {shoppingWCat
+                        .filter((list) => list.category_name == cat.name)
+                        .map((list) => (
+                          <ListName
+                            key={list.id}
+                            id={list.id}
+                            name={list.name}
+                          />
+                        ))}
+                    </Category>
                   ))}
               </ul>
             </>
