@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 const Add = ({ placeholder, postValue, setPostValue, baseUrl }) => {
   const [input, setInput] = useState("");
