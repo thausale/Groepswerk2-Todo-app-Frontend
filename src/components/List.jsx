@@ -49,18 +49,24 @@ const List = () => {
         postValue={postValue}
         inputError={inputError}
       >
-        <ListSection
-          setHandledCheck={setHandledCheck}
-          handledCheck={handledCheck}
-          labelName="unchecked"
-          lists={uncheckedItems}
-        ></ListSection>
-        <ListSection
-          setHandledCheck={setHandledCheck}
-          handledCheck={handledCheck}
-          labelName="checked"
-          lists={checkedItems}
-        ></ListSection>
+        {listItems.length > 0 ? (
+          <>
+            <ListSection
+              setHandledCheck={setHandledCheck}
+              handledCheck={handledCheck}
+              labelName="unchecked"
+              lists={uncheckedItems}
+            ></ListSection>
+            <ListSection
+              setHandledCheck={setHandledCheck}
+              handledCheck={handledCheck}
+              labelName="checked"
+              lists={checkedItems}
+            ></ListSection>
+          </>
+        ) : (
+          <h5>No list items yet</h5>
+        )}
       </Section>
     </>
   );

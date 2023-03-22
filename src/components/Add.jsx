@@ -21,7 +21,7 @@ const Add = ({ placeholder, postValue, setPostValue, baseUrl }) => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
-          <button>Add</button>
+          <button className="button">Add</button>
         </form>
         <span className="icon is-small is-left">
           <i className="fa-solid fa-plus"></i>
