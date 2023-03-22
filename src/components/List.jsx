@@ -4,31 +4,49 @@ import Section from "./Section";
 import MenuSection from "./MenuSection";
 import axios from "axios";
 import config from "../config";
+import ListSection from "./ListSection";
 
 const List = () => {
   const [list, setList] = useState({});
-  const [listItems, setListItems] = useState({});
+  const [listItems, setListItems] = useState([]);
+  const [checkedItems, setCheckedItems] = useState([]);
+  const [uncheckedItems, setUncheckedItems] = useState([]);
   const { id } = useParams();
   const baseUrl = config.apiBaseUrl;
+  const [inputError, setInputError] = useState();
+
+  const [postValue, setPostValue] = useState("");
 
   useEffect(() => {
-    (async () => {
-      const { data } = await axios(`${baseUrl}/list/${id}`);
-      setList(data);
-      setListItems(data.listItems);
-    })();
-  });
+    const fetchData = async () => {
+      try {
+        const {
+          data: { data },
+        } = await axios(`${baseUrl}/list/${id}`);
+        setList(data);
+        setListItems(data.listItems);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+    setCheckedItems(listItems.filter((item) => item.checked == "1"));
+    setUncheckedItems(listItems.filter((item) => item.checked == "0"));
+  }, []);
 
   return (
     <>
       {/* <Link to={`/settings/list/${id}`}>settings</Link> */}
       <Section
-        sectionName={`List with id: ${id}`}
+        sectionName={list.name}
         placeholder="Add To Do"
         baseUrl={baseUrl}
+        postValue={postValue}
+        inputError={inputError}
       >
-        <MenuSection sectionName="unchecked" lists={listItems}></MenuSection>
-        {/* <MenuSection sectionName="completed" lists={}></MenuSection> */}
+        <ListSection labelName="unchecked" lists={uncheckedItems}></ListSection>
+        <ListSection labelName="checked" lists={checkedItems}></ListSection>
       </Section>
     </>
   );

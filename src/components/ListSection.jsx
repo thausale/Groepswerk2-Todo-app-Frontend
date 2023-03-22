@@ -1,16 +1,21 @@
 import React from "react";
+import ListItem from "./ListItem";
 
-const ListSection = () => {
+const ListSection = ({ lists, labelName, children }) => {
   return (
     <>
-      {lists && (
+      {lists && lists.length > 0 && (
         <>
           <p className="menu-label">{labelName}</p>
           <ul className="menu-list">
             {lists.map((list) => (
-              <ListName key={list.id} id={list.id} name={list.name} />
+              <ListItem
+                status={labelName}
+                key={list.id}
+                id={list.id}
+                name={list.name}
+              />
             ))}
-            {children}
           </ul>
         </>
       )}
