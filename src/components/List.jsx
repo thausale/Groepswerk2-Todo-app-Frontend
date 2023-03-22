@@ -4,18 +4,39 @@ import Section from "./Section";
 import MenuSection from "./MenuSection";
 import axios from "axios";
 import config from "../config";
+import ListSection from "./ListSection";
 
 const List = () => {
   const [list, setList] = useState({});
-  const [listItems, setListItems] = useState({});
+  const [listItems, setListItems] = useState([]);
   const { id } = useParams();
   const baseUrl = config.apiBaseUrl;
+  const [inputError, setInputError] = useState();
+
+  const [postValue, setPostValue] = useState("");
 
   useEffect(() => {
     (async () => {
       const { data } = await axios(`${baseUrl}/list/${id}`);
       setList(data);
       setListItems(data.listItems);
+      setListItems([
+        {
+          id: 42,
+          name: "test1",
+          completed: true,
+        },
+        {
+          id: 43,
+          name: "tes21",
+          completed: true,
+        },
+        {
+          id: 44,
+          name: "test3",
+          completed: true,
+        },
+      ]);
     })();
   });
 
@@ -26,8 +47,11 @@ const List = () => {
         sectionName={`List with id: ${id}`}
         placeholder="Add To Do"
         baseUrl={baseUrl}
+        postValue={postValue}
+        inputError={inputError}
       >
-        <MenuSection sectionName="unchecked" lists={listItems}></MenuSection>
+        <ListSection labelName="unchecked" lists={listItems}></ListSection>
+        <ListSection labelName="checked" lists={listItems}></ListSection>
         {/* <MenuSection sectionName="completed" lists={}></MenuSection> */}
       </Section>
     </>
