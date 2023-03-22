@@ -4,7 +4,7 @@ import ListItem from "./ListItem";
 const ListSection = ({ lists, labelName, children }) => {
   return (
     <>
-      {lists && (
+      {lists && lists.length > 0 && (
         <>
           <p className="menu-label">{labelName}</p>
           <ul className="menu-list">
@@ -16,7 +16,6 @@ const ListSection = ({ lists, labelName, children }) => {
                 name={list.name}
               />
             ))}
-            {children}
           </ul>
         </>
       )}

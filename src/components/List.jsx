@@ -9,6 +9,8 @@ import ListSection from "./ListSection";
 const List = () => {
   const [list, setList] = useState({});
   const [listItems, setListItems] = useState([]);
+  const [checkedItems, setCheckedItems] = useState([]);
+  const [uncheckedItems, setUncheckedItems] = useState([]);
   const { id } = useParams();
   const baseUrl = config.apiBaseUrl;
   const [inputError, setInputError] = useState();
@@ -16,43 +18,35 @@ const List = () => {
   const [postValue, setPostValue] = useState("");
 
   useEffect(() => {
-    (async () => {
-      const { data } = await axios(`${baseUrl}/list/${id}`);
-      setList(data);
-      setListItems(data.listItems);
-      setListItems([
-        {
-          id: 42,
-          name: "test1",
-          completed: true,
-        },
-        {
-          id: 43,
-          name: "tes21",
-          completed: true,
-        },
-        {
-          id: 44,
-          name: "test3",
-          completed: true,
-        },
-      ]);
-    })();
-  });
+    const fetchData = async () => {
+      try {
+        const {
+          data: { data },
+        } = await axios(`${baseUrl}/list/${id}`);
+        setList(data);
+        setListItems(data.listItems);
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+    setCheckedItems(listItems.filter((item) => item.checked == "1"));
+    setUncheckedItems(listItems.filter((item) => item.checked == "0"));
+  }, []);
 
   return (
     <>
       {/* <Link to={`/settings/list/${id}`}>settings</Link> */}
       <Section
-        sectionName={`List with id: ${id}`}
+        sectionName={list.name}
         placeholder="Add To Do"
         baseUrl={baseUrl}
         postValue={postValue}
         inputError={inputError}
       >
-        <ListSection labelName="unchecked" lists={listItems}></ListSection>
-        <ListSection labelName="checked" lists={listItems}></ListSection>
-        {/* <MenuSection sectionName="completed" lists={}></MenuSection> */}
+        <ListSection labelName="unchecked" lists={uncheckedItems}></ListSection>
+        <ListSection labelName="checked" lists={checkedItems}></ListSection>
       </Section>
     </>
   );
