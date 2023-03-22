@@ -18,6 +18,7 @@ const List = () => {
   return (
     <>
       <Link to={`/settings/list/${id}`}>settings</Link>
+      
     </>
   );
 };

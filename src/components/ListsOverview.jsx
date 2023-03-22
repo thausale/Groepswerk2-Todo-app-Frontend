@@ -6,6 +6,7 @@ import ListName from "./ListName";
 import Category from "./Category";
 import "bulma/css/bulma.css";
 import Section from "./Section";
+import MenuSection from "./MenuSection";
 
 const ListsOverview = (props) => {
   const [allLists, setAllLists] = useState([]);
@@ -121,29 +122,10 @@ const ListsOverview = (props) => {
       placeholder="Add List"
       baseUrl={baseUrl}
     >
-      {impLists && (
-        <>
-          <p className="menu-label">Important</p>
-          <ul className="menu-list">
-            {impLists.map((list) => (
-              <ListName key={list.id} id={list.id} name={list.name} />
-            ))}
-          </ul>
-        </>
-      )}
-
-      {lists && (
-        <>
-          <p className="menu-label">Lists</p>
-          <ul className="menu-list">
-            {lists.map((list) => (
-              <ListName key={list.id} id={list.id} name={list.name} />
-            ))}
-
-            <Category cats={listCats} listsWCat={listsWCat}></Category>
-          </ul>
-        </>
-      )}
+      <MenuSection lists={impLists} labelName="Important" />
+      <MenuSection lists={lists} labelName="Lists">
+        <Category cats={listCats} listsWCat={listsWCat}></Category>
+      </MenuSection>
     </Section>
   );
 };
