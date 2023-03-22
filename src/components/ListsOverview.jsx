@@ -5,6 +5,7 @@ import config from "../config";
 import ListName from "./ListName";
 import Category from "./Category";
 import "bulma/css/bulma.css";
+import Section from "./Section";
 
 const ListsOverview = (props) => {
   const [allLists, setAllLists] = useState([]);
@@ -113,44 +114,37 @@ const ListsOverview = (props) => {
   }, [postValue]);
 
   return (
-    <section className="hero is-light is-fullheight">
-      <div>
-        <h1 className="title my-5 mx-4">All my lists</h1>
-        <aside className="menu is-large mx-4">
-          {impLists && (
-            <>
-              <p className="menu-label">Important</p>
-              <ul className="menu-list">
-                {impLists.map((list) => (
-                  <ListName key={list.id} id={list.id} name={list.name} />
-                ))}
-              </ul>
-            </>
-          )}
+    <Section
+      inputError={inputError}
+      postValue={postValue}
+      setPostValue={setPostValue}
+      placeholder="Add List"
+      baseUrl={baseUrl}
+    >
+      {impLists && (
+        <>
+          <p className="menu-label">Important</p>
+          <ul className="menu-list">
+            {impLists.map((list) => (
+              <ListName key={list.id} id={list.id} name={list.name} />
+            ))}
+          </ul>
+        </>
+      )}
 
-          {lists && (
-            <>
-              <p className="menu-label">Lists</p>
-              <ul className="menu-list">
-                {lists.map((list) => (
-                  <ListName key={list.id} id={list.id} name={list.name} />
-                ))}
+      {lists && (
+        <>
+          <p className="menu-label">Lists</p>
+          <ul className="menu-list">
+            {lists.map((list) => (
+              <ListName key={list.id} id={list.id} name={list.name} />
+            ))}
 
-                <Category cats={listCats} listsWCat={listsWCat}></Category>
-              </ul>
-            </>
-          )}
-        </aside>
-      </div>
-
-      {inputError && <p>{inputError}</p>}
-      <Add
-        postValue={postValue}
-        setPostValue={setPostValue}
-        placeholder="Add list"
-        baseUrl={baseUrl}
-      ></Add>
-    </section>
+            <Category cats={listCats} listsWCat={listsWCat}></Category>
+          </ul>
+        </>
+      )}
+    </Section>
   );
 };
 

@@ -1,9 +1,28 @@
-// import React, { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import axios from "axios";
-// import config from "../config";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import config from "../config";
 
 const List = () => {
+  const [list, setList] = useState({});
+  const { id } = useParams();
+  const baseUrl = config.apiBaseUrl;
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios(`${baseUrl}/${id}`);
+      setList(data);
+    })();
+  });
+
+  return (
+    <>
+      <Link to={`/settings/list/${id}`}>settings</Link>
+    </>
+  );
+};
+
+const List1 = () => {
   return <h1>List</h1>;
   //   const { id } = useParams();
   //   // console.log(useParams());
