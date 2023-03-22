@@ -20,7 +20,7 @@ const Section = ({
         <aside className="menu is-large mx-4">{children}</aside>
       </div>
 
-      {inputError && <p>{inputError}</p>}
+      {inputError > 0 && <p>{inputError}</p>}
       <Add
         postValue={postValue}
         setPostValue={setPostValue}
