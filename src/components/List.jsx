@@ -1,24 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Section from "./Section";
+import MenuSection from "./MenuSection";
 import axios from "axios";
 import config from "../config";
 
 const List = () => {
   const [list, setList] = useState({});
+  const [listItems, setListItems] = useState({});
   const { id } = useParams();
   const baseUrl = config.apiBaseUrl;
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios(`${baseUrl}/${id}`);
+      const { data } = await axios(`${baseUrl}/list/${id}`);
       setList(data);
+      setListItems(data.listItems);
     })();
   });
 
   return (
     <>
-      <Link to={`/settings/list/${id}`}>settings</Link>
-      
+      {/* <Link to={`/settings/list/${id}`}>settings</Link> */}
+      <Section
+        sectionName={`List with id: ${id}`}
+        placeholder="Add To Do"
+        baseUrl={baseUrl}
+      >
+        <MenuSection sectionName="unchecked" lists={listItems}></MenuSection>
+        {/* <MenuSection sectionName="completed" lists={}></MenuSection> */}
+      </Section>
     </>
   );
 };

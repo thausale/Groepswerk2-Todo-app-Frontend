@@ -116,6 +116,7 @@ const ListsOverview = (props) => {
 
   return (
     <Section
+      sectionName="All Lists"
       inputError={inputError}
       postValue={postValue}
       setPostValue={setPostValue}

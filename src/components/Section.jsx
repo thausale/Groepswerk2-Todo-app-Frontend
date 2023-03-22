@@ -8,11 +8,12 @@ const Section = ({
   setPostValue,
   placeholder,
   baseUrl,
+  sectionName,
 }) => {
   return (
     <section className="hero is-light is-fullheight">
       <div>
-        <h1 className="title my-5 mx-4">All my lists</h1>
+        <h1 className="title my-5 mx-4">{sectionName}</h1>
         <aside className="menu is-large mx-4">{children}</aside>
       </div>
 
