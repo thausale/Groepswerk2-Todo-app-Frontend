@@ -48,6 +48,8 @@ const List = () => {
         baseUrl={baseUrl}
         postValue={postValue}
         inputError={inputError}
+        back
+        settings
       >
         {listItems.length > 0 ? (
           <>
