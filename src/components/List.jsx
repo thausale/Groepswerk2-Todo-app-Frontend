@@ -1,9 +1,40 @@
-// import React, { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import axios from "axios";
-// import config from "../config";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import Section from "./Section";
+import MenuSection from "./MenuSection";
+import axios from "axios";
+import config from "../config";
 
 const List = () => {
+  const [list, setList] = useState({});
+  const [listItems, setListItems] = useState({});
+  const { id } = useParams();
+  const baseUrl = config.apiBaseUrl;
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios(`${baseUrl}/list/${id}`);
+      setList(data);
+      setListItems(data.listItems);
+    })();
+  });
+
+  return (
+    <>
+      {/* <Link to={`/settings/list/${id}`}>settings</Link> */}
+      <Section
+        sectionName={`List with id: ${id}`}
+        placeholder="Add To Do"
+        baseUrl={baseUrl}
+      >
+        <MenuSection sectionName="unchecked" lists={listItems}></MenuSection>
+        {/* <MenuSection sectionName="completed" lists={}></MenuSection> */}
+      </Section>
+    </>
+  );
+};
+
+const List1 = () => {
   return <h1>List</h1>;
   //   const { id } = useParams();
   //   // console.log(useParams());
