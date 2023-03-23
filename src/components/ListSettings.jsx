@@ -39,11 +39,9 @@ const ListSettings = () => {
       `https://s6.syntradeveloper.be/app/api/list/${id}`,
       body
     );
-    console.log(response);
   };
 
   useEffect(() => {
-    console.log(patchBody);
     if (
       patchBody.has("name") &&
       patchBody.has("important") &&
