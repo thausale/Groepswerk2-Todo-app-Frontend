@@ -7,7 +7,7 @@ import config from "../config";
 import ListSection from "./ListSection";
 
 const List = () => {
-  const [list, setList] = useState({});
+  const [list, setList] = useState({ test: "hello" });
   const [listItems, setListItems] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
   const [uncheckedItems, setUncheckedItems] = useState([]);
@@ -45,6 +45,10 @@ const List = () => {
         postValue={postValue}
         inputError={inputError}
       >
+        <Link to={`/list/${list.id}/settings`} state={{ data: { list } }}>
+          Settings
+        </Link>
+
         <ListSection labelName="unchecked" lists={uncheckedItems}></ListSection>
         <ListSection labelName="checked" lists={checkedItems}></ListSection>
       </Section>
