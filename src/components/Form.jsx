@@ -10,7 +10,9 @@ const Form = ({ placeholder, setPostValue, hiddenClass, setCatInputField }) => {
             e.preventDefault();
             if (input.length > 0) {
               setPostValue(input);
-              setCatInputField(false);
+              if (setCatInputField) {
+                setCatInputField(false);
+              }
             }
             setInput("");
           }}
