@@ -62,11 +62,10 @@ const List = () => {
     setUncheckedItems(listItems.filter((item) => item.checked == "0"));
   }, [listItems]);
 
+  console.log(list);
+
   return (
     <>
-      <Link to={`/list/${list.id}/settings`} state={{ data: { list } }}>
-        Settings
-      </Link>
       <Section
         sectionName={list.name}
         placeholder="Add To Do"
@@ -76,6 +75,7 @@ const List = () => {
         inputError={inputError}
         back
         settings
+        list={list}
       >
         {isLoading ? (
           <p>Loading ...</p>
