@@ -14,7 +14,8 @@ const List = () => {
   const [handledCheck, setHandledCheck] = useState(false);
   const { id } = useParams();
   const baseUrl = config.apiBaseUrl;
-  const [inputError, setInputError] = useState();
+  const [inputError, setInputError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const [postValue, setPostValue] = useState("");
 
@@ -25,7 +26,7 @@ const List = () => {
       } = await axios(`${baseUrl}/list/${id}`);
       setList(data);
       setListItems(data.listItems);
-      // console.log(data);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -76,23 +77,29 @@ const List = () => {
         back
         settings
       >
-        {listItems.length > 0 ? (
-          <>
-            <ListSection
-              setHandledCheck={setHandledCheck}
-              handledCheck={handledCheck}
-              labelName="unchecked"
-              lists={uncheckedItems}
-            ></ListSection>
-            <ListSection
-              setHandledCheck={setHandledCheck}
-              handledCheck={handledCheck}
-              labelName="checked"
-              lists={checkedItems}
-            ></ListSection>
-          </>
+        {isLoading ? (
+          <p>Loading ...</p>
         ) : (
-          <img src="/noLi.jpg" alt="No List items" />
+          <>
+            {listItems.length > 0 ? (
+              <>
+                <ListSection
+                  setHandledCheck={setHandledCheck}
+                  handledCheck={handledCheck}
+                  labelName="unchecked"
+                  lists={uncheckedItems}
+                />
+                <ListSection
+                  setHandledCheck={setHandledCheck}
+                  handledCheck={handledCheck}
+                  labelName="checked"
+                  lists={checkedItems}
+                />
+              </>
+            ) : (
+              <img src="/noLi.jpg" alt="No List items" />
+            )}
+          </>
         )}
         <Link to={`/list/${list.id}/settings`} state={{ data: { list } }}>
           Settings
