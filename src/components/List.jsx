@@ -62,8 +62,6 @@ const List = () => {
     setUncheckedItems(listItems.filter((item) => item.checked == "0"));
   }, [listItems]);
 
-  console.log(list);
-
   return (
     <>
       <Section

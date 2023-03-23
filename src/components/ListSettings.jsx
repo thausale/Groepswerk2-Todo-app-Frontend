@@ -17,9 +17,10 @@ const ListSettings = () => {
   const [listColor, setListColor] = useState(color);
   const [listPhoto, setListPhoto] = useState(photo || "nothing yet");
   const [listImportant, setListImportant] = useState(important || 0);
-  const [listCategory, setListCategory] = useState(
-    category_name || "No category set"
-  );
+  const [listCategory, setListCategory] = useState(category_name || "");
+  const [listCatId, setListCatId] = useState();
+  const [allCats, setAllCats] = useState([]);
+
   const formData = new FormData();
 
   const [patchBody, setPatchBody] = useState(formData);
@@ -31,6 +32,7 @@ const ListSettings = () => {
     formData.append("important", listImportant);
     formData.append("color", listColor);
     formData.append("photo", listPhoto);
+    formData.append("category_id", listCatId);
     setPatchBody(formData);
   };
 
@@ -40,6 +42,28 @@ const ListSettings = () => {
       body
     );
   };
+
+  useEffect(() => {
+    const currentCategory = allCats.find(
+      (category) => category.name === listCategory
+    );
+    if (currentCategory) {
+      setListCatId(currentCategory?.id);
+    }
+  }, [listCategory]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const {
+          data: { data },
+        } = await axios("https://s6.syntradeveloper.be/app/api/categories");
+        setAllCats(data);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     if (
@@ -53,12 +77,11 @@ const ListSettings = () => {
     }
   }, [patchBody]);
 
-  // const { id } = useParams();
-
-  // console.log(list);
-
   return (
     <div className="container">
+      <Link to={`/list/${id}`} className="button">
+        Back to List
+      </Link>
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label className="label">List Name</label>
@@ -73,15 +96,38 @@ const ListSettings = () => {
           </div>
         </div>
         <div className="field">
+          <label htmlFor="imp" className="label" name="impCheck">
+            Important
+          </label>
+          <div className="control">
+            {/* <InputComponent value={listImportant} setValue={setListImportant} /> */}
+            <input
+              type="checkbox"
+              checked={listImportant === 1}
+              onChange={(e) => setListImportant(e.target.checked ? 1 : 0)}
+            />
+          </div>
+        </div>
+        <div className="field">
           <label className="label">Photo</label>
           <div className="control">
             <InputComponent value={listPhoto} setValue={setListPhoto} />
           </div>
         </div>
         <div className="field">
-          <label className="label">Category</label>
+          <label className="label">Category id</label>
           <div className="control">
-            <InputComponent value={listCategory} setValue={setListCategory} />
+            <select
+              value={listCategory}
+              onChange={(e) => setListCategory(e.target.value)}
+            >
+              <option value="">No category set</option>
+              {allCats.map((option) => (
+                <option key={option.id} value={option.name}>
+                  {option.name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="field">
@@ -92,9 +138,6 @@ const ListSettings = () => {
           </div>
         </div>
       </form>
-      <Link to={`/list/${id}`} className="button">
-        Back to List
-      </Link>
     </div>
   );
 };
