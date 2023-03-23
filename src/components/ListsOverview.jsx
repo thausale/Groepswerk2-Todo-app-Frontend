@@ -122,6 +122,7 @@ const ListsOverview = (props) => {
       setPostValue={setPostValue}
       placeholder="Add List"
       baseUrl={baseUrl}
+      catBtn={true}
     >
       <MenuSection lists={impLists} labelName="Important" />
       <MenuSection lists={lists} labelName="Lists">
