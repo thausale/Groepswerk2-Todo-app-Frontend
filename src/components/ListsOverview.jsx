@@ -21,6 +21,7 @@ const ListsOverview = (props) => {
   const [inputError, setInputError] = useState(false);
 
   const [postValue, setPostValue] = useState("");
+  const [catPostValue, setCatPostValue] = useState("");
   const baseUrl = config.apiBaseUrl;
 
   const getLists = async () => {
@@ -46,6 +47,20 @@ const ListsOverview = (props) => {
     formData.append("name", postValue);
     await axios.post(baseUrl + "/list", formData);
   };
+
+  const addCat = async () => {
+    const formData = new FormData();
+    formData.append("name", catPostValue);
+    setPostValue("");
+    await axios.post(baseUrl + "/categories", formData);
+  };
+
+  useEffect(() => {
+    (async () => {
+      await addCat();
+      await fetchData();
+    })();
+  }, [catPostValue]);
 
   useEffect(() => {
     addNewList();
@@ -119,9 +134,11 @@ const ListsOverview = (props) => {
       sectionName="All Lists"
       inputError={inputError}
       postValue={postValue}
+      setCatPostValue={setCatPostValue}
       setPostValue={setPostValue}
       placeholder="Add List"
       baseUrl={baseUrl}
+      catBtn={true}
     >
       <MenuSection lists={impLists} labelName="Important" />
       <MenuSection lists={lists} labelName="Lists">

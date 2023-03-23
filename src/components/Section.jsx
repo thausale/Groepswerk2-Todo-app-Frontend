@@ -10,6 +10,9 @@ const Section = ({
   placeholder,
   baseUrl,
   sectionName,
+  catPostValue,
+  setCatPostValue,
+  catBtn,
   ...props
 }) => {
   return (
@@ -26,6 +29,8 @@ const Section = ({
         setPostValue={setPostValue}
         placeholder={placeholder}
         baseUrl={baseUrl}
+        catBtn={catBtn}
+        setCatPostValue={setCatPostValue}
       ></Add>
     </section>
   );
