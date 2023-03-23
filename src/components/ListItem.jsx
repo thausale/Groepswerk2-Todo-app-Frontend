@@ -4,7 +4,14 @@ import config from "../config";
 import axios from "axios";
 const baseUrl = config.apiBaseUrl;
 
-const ListItem = ({ id, name, status, handledCheck, setHandledCheck }) => {
+const ListItem = ({
+  id,
+  name,
+  status,
+  handledCheck,
+  setHandledCheck,
+  hide,
+}) => {
   let klasse;
   let resource;
   if (status === "checked") {
@@ -25,16 +32,20 @@ const ListItem = ({ id, name, status, handledCheck, setHandledCheck }) => {
   };
 
   return (
-    <Link onClick={handleCheck}>
-      <li key={id} id={id}>
-        <span className="icon-text">
-          <span className="icon">
-            <i className={klasse}></i>
-          </span>
-          <span>{name}</span>
-        </span>
-      </li>
-    </Link>
+    <>
+      {!hide && (
+        <Link onClick={handleCheck}>
+          <li key={id} id={id}>
+            <span className="icon-text">
+              <span className="icon">
+                <i className={klasse}></i>
+              </span>
+              <span>{name}</span>
+            </span>
+          </li>
+        </Link>
+      )}
+    </>
   );
 };
 
