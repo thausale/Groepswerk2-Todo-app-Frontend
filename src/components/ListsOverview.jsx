@@ -127,6 +127,9 @@ const ListsOverview = (props) => {
       <MenuSection lists={lists} labelName="Lists">
         <Category cats={listCats} listsWCat={listsWCat}></Category>
       </MenuSection>
+      {/* <MenuSection lists={lists} labelName="Shopping">
+        <Category cats={shopCats} listsWCat={shoppingWCat}></Category>
+      </MenuSection> */}
     </Section>
   );
 };

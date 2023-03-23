@@ -11,6 +11,7 @@ const List = () => {
   const [listItems, setListItems] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
   const [uncheckedItems, setUncheckedItems] = useState([]);
+  const [handledCheck, setHandledCheck] = useState(false);
   const { id } = useParams();
   const baseUrl = config.apiBaseUrl;
   const [inputError, setInputError] = useState();
@@ -25,15 +26,18 @@ const List = () => {
         } = await axios(`${baseUrl}/list/${id}`);
         setList(data);
         setListItems(data.listItems);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error(error);
       }
     };
     fetchData();
+  }, [handledCheck]);
+
+  useEffect(() => {
     setCheckedItems(listItems.filter((item) => item.checked == "1"));
     setUncheckedItems(listItems.filter((item) => item.checked == "0"));
-  }, []);
+  }, [listItems]);
 
   return (
     <>
@@ -45,8 +49,24 @@ const List = () => {
         postValue={postValue}
         inputError={inputError}
       >
-        <ListSection labelName="unchecked" lists={uncheckedItems}></ListSection>
-        <ListSection labelName="checked" lists={checkedItems}></ListSection>
+        {listItems.length > 0 ? (
+          <>
+            <ListSection
+              setHandledCheck={setHandledCheck}
+              handledCheck={handledCheck}
+              labelName="unchecked"
+              lists={uncheckedItems}
+            ></ListSection>
+            <ListSection
+              setHandledCheck={setHandledCheck}
+              handledCheck={handledCheck}
+              labelName="checked"
+              lists={checkedItems}
+            ></ListSection>
+          </>
+        ) : (
+          <h5>No list items yet</h5>
+        )}
       </Section>
     </>
   );
