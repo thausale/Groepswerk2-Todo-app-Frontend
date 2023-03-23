@@ -52,8 +52,7 @@ const ListsOverview = (props) => {
     const formData = new FormData();
     formData.append("name", catPostValue);
     setPostValue("");
-    formData.append("list_id", id);
-    await axios.post(baseUrl + "/category", formData);
+    await axios.post(baseUrl + "/categories", formData);
   };
 
   useEffect(() => {
