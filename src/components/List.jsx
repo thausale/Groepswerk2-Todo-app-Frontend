@@ -18,21 +18,43 @@ const List = () => {
 
   const [postValue, setPostValue] = useState("");
 
+  const fetchData = async () => {
+    try {
+      const {
+        data: { data },
+      } = await axios(`${baseUrl}/list/${id}`);
+      setList(data);
+      setListItems(data.listItems);
+      // console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const addTodo = async () => {
+    setInputError(false);
+    if (postValue.length < 1) {
+      setInputError("list item can't be empty");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("name", postValue);
+    setPostValue("");
+    formData.append("list_id", id);
+    await axios.post(baseUrl + "/todo", formData);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const {
-          data: { data },
-        } = await axios(`${baseUrl}/list/${id}`);
-        setList(data);
-        setListItems(data.listItems);
-        // console.log(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     fetchData();
   }, [handledCheck]);
+
+  useEffect(() => {
+    (async () => {
+      await addTodo();
+      await fetchData();
+    })();
+  }, [postValue]);
 
   useEffect(() => {
     setCheckedItems(listItems.filter((item) => item.checked == "1"));
@@ -47,7 +69,10 @@ const List = () => {
         placeholder="Add To Do"
         baseUrl={baseUrl}
         postValue={postValue}
+        setPostValue={setPostValue}
         inputError={inputError}
+        back
+        settings
       >
         {listItems.length > 0 ? (
           <>
@@ -65,7 +90,7 @@ const List = () => {
             ></ListSection>
           </>
         ) : (
-          <h5>No list items yet</h5>
+          <img src="/noLi.jpg" alt="No List items" />
         )}
       </Section>
     </>

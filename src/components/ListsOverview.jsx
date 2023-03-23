@@ -18,7 +18,7 @@ const ListsOverview = (props) => {
   const [shoppingWCat, setShoppingWCat] = useState([]);
   const [listCats, setListCats] = useState([]);
   const [shopCats, setShopCats] = useState([]);
-  const [inputError, setInputError] = useState();
+  const [inputError, setInputError] = useState(false);
 
   const [postValue, setPostValue] = useState("");
   const baseUrl = config.apiBaseUrl;
@@ -36,7 +36,7 @@ const ListsOverview = (props) => {
     return data;
   };
   const addNewList = async () => {
-    setInputError("");
+    setInputError(false);
     if (postValue.length < 3) {
       setInputError("listName should be over 3 characters long");
       return;

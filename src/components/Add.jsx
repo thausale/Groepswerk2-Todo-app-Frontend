@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 const Add = ({ placeholder, postValue, setPostValue, baseUrl }) => {
   const [input, setInput] = useState("");
@@ -10,7 +9,9 @@ const Add = ({ placeholder, postValue, setPostValue, baseUrl }) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            setPostValue(input);
+            if (input.length > 0) {
+              setPostValue(input);
+            }
             setInput("");
           }}
         >
