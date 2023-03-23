@@ -7,7 +7,7 @@ import config from "../config";
 import ListSection from "./ListSection";
 
 const List = () => {
-  const [list, setList] = useState({});
+  const [list, setList] = useState({ test: "hello" });
   const [listItems, setListItems] = useState([]);
   const [checkedItems, setCheckedItems] = useState([]);
   const [uncheckedItems, setUncheckedItems] = useState([]);
@@ -63,7 +63,9 @@ const List = () => {
 
   return (
     <>
-      {/* <Link to={`/settings/list/${id}`}>settings</Link> */}
+      <Link to={`/list/${list.id}/settings`} state={{ data: { list } }}>
+        Settings
+      </Link>
       <Section
         sectionName={list.name}
         placeholder="Add To Do"
@@ -92,6 +94,9 @@ const List = () => {
         ) : (
           <img src="/noLi.jpg" alt="No List items" />
         )}
+        <Link to={`/list/${list.id}/settings`} state={{ data: { list } }}>
+          Settings
+        </Link>
       </Section>
     </>
   );
