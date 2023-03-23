@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import InputComponent from "./InputComponent.jsx";
 
 const ListSettings = () => {
   const location = useLocation();
@@ -28,6 +29,9 @@ const ListSettings = () => {
       />
       {/* MAKE INPUT COMPONENT HERE, pass along the value, setvalue & possibly
       type */}
+      <InputComponent value={listColor} setValue={setListColor} />
+      <InputComponent value={listPhoto} setValue={setListPhoto} />
+      <InputComponent value={listCategory} setValue={setListCategory} />
     </form>
   );
 };
