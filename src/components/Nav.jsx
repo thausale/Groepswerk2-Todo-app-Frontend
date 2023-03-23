@@ -1,21 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Nav = ({ back, settings }) => {
+const Nav = ({ back, settings, list }) => {
   return (
     <nav>
       <ul>
         {back && (
           <Link to="/">
             <li>
-              <i class="fa-solid fa-angle-left"></i> Back
+              <i className="fa-solid fa-angle-left"></i> Back
             </li>
           </Link>
         )}
-        {settings && (
-          <Link>
+        {list && list.id && settings && (
+          <Link to={`/list/${list.id}/settings`} state={{ data: { list } }}>
             <li>
-              <i class="fa-solid fa-ellipsis"></i>
+              <i className="fa-solid fa-ellipsis"></i>
             </li>
           </Link>
         )}

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Add from "./Add";
 import config from "../config";
-import ListName from "./ListName";
 import Category from "./Category";
 import "bulma/css/bulma.css";
 import Section from "./Section";
@@ -55,6 +53,7 @@ const ListsOverview = (props) => {
   useEffect(() => {
     (async () => {
       await addCat();
+      setAllCats(await getCats());
     })();
   }, [catPostValue]);
 
