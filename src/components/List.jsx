@@ -90,7 +90,7 @@ const List = () => {
             ></ListSection>
           </>
         ) : (
-          <h5>No list items yet</h5>
+          <img src="/noLi.jpg" alt="No List items" />
         )}
       </Section>
     </>
