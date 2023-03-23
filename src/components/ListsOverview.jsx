@@ -58,7 +58,6 @@ const ListsOverview = (props) => {
   useEffect(() => {
     (async () => {
       await addCat();
-      await fetchData();
     })();
   }, [catPostValue]);
 

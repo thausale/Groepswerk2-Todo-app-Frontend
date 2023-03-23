@@ -2,7 +2,6 @@ import React from "react";
 import ListName from "./ListName";
 
 const Category = ({ cats, listsWCat }) => {
-  console.log(cats);
   return (
     <>
       {cats &&
