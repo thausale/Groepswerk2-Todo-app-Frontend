@@ -59,9 +59,10 @@ const ListsOverview = (props) => {
   useEffect(() => {
     addNewList();
     const fetchLists = async () => {
-      setAllLists(await getLists());
-      setAllCats(await getCats());
-
+      const allLists = await getLists();
+      setAllLists(allLists);
+      const allCats = await getCats();
+      setAllCats(allCats);
       // get all lists with imp = 1;
       const importantLists = allLists.filter((list) => list.important === "1");
       setImpLists(importantLists);
