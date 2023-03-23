@@ -63,7 +63,9 @@ const List = () => {
 
   return (
     <>
-      {/* <Link to={`/settings/list/${id}`}>settings</Link> */}
+      <Link to={`/list/${list.id}/settings`} state={{ data: { list } }}>
+        Settings
+      </Link>
       <Section
         sectionName={list.name}
         placeholder="Add To Do"
