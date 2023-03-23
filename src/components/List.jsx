@@ -40,6 +40,7 @@ const List = () => {
 
     const formData = new FormData();
     formData.append("name", postValue);
+    setPostValue("");
     formData.append("list_id", id);
     await axios.post(baseUrl + "/todo", formData);
   };
@@ -49,8 +50,10 @@ const List = () => {
   }, [handledCheck]);
 
   useEffect(() => {
-    addTodo();
-    fetchData();
+    (async () => {
+      await addTodo();
+      await fetchData();
+    })();
   }, [postValue]);
 
   useEffect(() => {

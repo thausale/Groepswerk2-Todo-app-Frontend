@@ -9,7 +9,9 @@ const Add = ({ placeholder, postValue, setPostValue, baseUrl }) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            setPostValue(input);
+            if (input.length > 0) {
+              setPostValue(input);
+            }
             setInput("");
           }}
         >
