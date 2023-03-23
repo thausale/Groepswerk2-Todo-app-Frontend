@@ -58,7 +58,7 @@ const ListSettings = () => {
         const {
           data: { data },
         } = await axios("https://s6.syntradeveloper.be/app/api/categories");
-        setAllCats(data);
+        setAllCats(data.filter((cat) => cat.name !== ""));
       } catch (error) {
         console.error(error);
       }
@@ -100,7 +100,6 @@ const ListSettings = () => {
             Important
           </label>
           <div className="control">
-            {/* <InputComponent value={listImportant} setValue={setListImportant} /> */}
             <input
               type="checkbox"
               checked={listImportant === 1}
@@ -121,12 +120,13 @@ const ListSettings = () => {
               value={listCategory}
               onChange={(e) => setListCategory(e.target.value)}
             >
-              <option value="">No category set</option>
-              {allCats.map((option) => (
-                <option key={option.id} value={option.name}>
-                  {option.name}
-                </option>
-              ))}
+              <option value="">-- No category --</option>
+              {allCats &&
+                allCats.map((option) => (
+                  <option key={option.id} value={option.name}>
+                    {option.name}
+                  </option>
+                ))}
             </select>
           </div>
         </div>
