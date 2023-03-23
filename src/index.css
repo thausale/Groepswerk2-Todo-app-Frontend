@@ -87,3 +87,39 @@ form {
   display: flex;
   flex-direction: row;
 }
+
+section.hero {
+  width: 90vw;
+  max-width: 600px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: flex-start;
+}
+
+.sticky .control form {
+  display: flex;
+  align-items: center;
+}
+
+.sticky {
+  transform: translateY(calc(50vh - 45%));
+  width: 95%;
+  margin: 0 auto;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+nav ul li {
+  font-size: 1.5rem;
+}
+
+.click {
+  cursor: pointer;
+}
