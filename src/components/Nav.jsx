@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Nav = ({ back, settings, list }) => {
   return (
-    <nav>
+    <nav className="px-5 pt-3">
       <ul>
         {back && (
           <Link to="/">
