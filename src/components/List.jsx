@@ -99,9 +99,6 @@ const List = () => {
             )}
           </>
         )}
-        <Link to={`/list/${list.id}/settings`} state={{ data: { list } }}>
-          Settings
-        </Link>
       </Section>
     </>
   );
